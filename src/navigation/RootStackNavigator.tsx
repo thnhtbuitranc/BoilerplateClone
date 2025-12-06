@@ -16,6 +16,8 @@ import SocialSleepScreen from "@/screens/sleep/SocialSleepScreen";
 import GroupDetailScreen from "@/screens/sleep/GroupDetailScreen";
 import IdolSelectionScreen from "@/screens/sleep/IdolSelectionScreen";
 import StatisticsScreen from "@/screens/sleep/StatisticsScreen";
+import SleepMusicScreen from "@/screens/sleep/SleepMusicScreen";
+import IdolCallScreen from "@/screens/sleep/IdolCallScreen";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -38,6 +40,8 @@ export default function RootStackNavigator() {
       <Stack.Screen name="GroupDetail" component={GroupDetailScreen} />
       <Stack.Screen name="IdolSelection" component={IdolSelectionScreen} />
       <Stack.Screen name="Statistics" component={StatisticsScreen} />
+      <Stack.Screen name="SleepMusic" component={SleepMusicScreen} />
+      <Stack.Screen name="IdolCall" component={IdolCallScreen} />
 
       {/* Auth Screens */}
       <Stack.Screen name="Login" component={LoginScreen} />

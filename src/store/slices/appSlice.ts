@@ -24,7 +24,7 @@ interface AppState {
 }
 
 const initialState: AppState = {
-  theme: 'dark',
+  theme: 'light', // Changed to light mode by default
   language: getDeviceLanguage(),
   insets: {
     left: 0,

@@ -78,7 +78,8 @@ const LandingScreen = ({ navigation }: any) => {
         <View className="items-center mb-8">
           <View className="relative">
             {/* Cute moon with glow effect */}
-            <View className="w-32 h-32 rounded-full items-center justify-center mb-4"
+            <View
+              className="w-32 h-32 rounded-full items-center justify-center mb-4"
               style={{
                 backgroundColor: `${colors.primary}15`,
                 shadowColor: colors.primary,
@@ -91,7 +92,11 @@ const LandingScreen = ({ navigation }: any) => {
               <Moon size={56} color={colors.primary} strokeWidth={2} />
               {/* Sparkles */}
               <View className="absolute -top-2 -right-2">
-                <Sparkles size={20} color={colors.warning} fill={colors.warning} />
+                <Sparkles
+                  size={20}
+                  color={colors.warning}
+                  fill={colors.warning}
+                />
               </View>
               <View className="absolute -bottom-1 -left-1">
                 <Heart size={16} color={colors.error} fill={colors.error} />
@@ -145,9 +150,7 @@ const LandingScreen = ({ navigation }: any) => {
             className="p-3 items-center"
             onPress={() => navigation.navigate("Dashboard" as never)}
           >
-            <Text className="text-neutrals400 text-base">
-              Xem thử trước →
-            </Text>
+            <Text className="text-neutrals400 text-base">Xem thử trước →</Text>
           </TouchableOpacity>
         </View>
 
@@ -166,7 +169,7 @@ const LandingScreen = ({ navigation }: any) => {
             <Text className="text-sm text-neutrals400">Satisfaction</Text>
           </View>
         </View>
-      </View>
+      </Animated.View>
 
       {/* Features Section */}
       <View className="px-6 pb-12">

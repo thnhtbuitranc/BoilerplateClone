@@ -131,6 +131,43 @@ const DashboardScreen = ({ navigation }: any) => {
             </Text>
           </TouchableOpacity>
         </View>
+
+        {/* New Features Row */}
+        <View className="flex-row gap-3 mt-3">
+          <TouchableOpacity
+            className="flex-1 p-6 rounded-3xl items-center"
+            style={{
+              backgroundColor: colors.warning + "20",
+              borderWidth: 2,
+              borderColor: colors.warning + "40",
+            }}
+            onPress={() => navigation.navigate("SleepMusic")}
+          >
+            <View className="w-12 h-12 rounded-full bg-warning/20 items-center justify-center mb-3">
+              <Text className="text-2xl">🎵</Text>
+            </View>
+            <Text className="text-foreground font-bold text-center">
+              Nhạc ngủ
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            className="flex-1 p-6 rounded-3xl items-center"
+            style={{
+              backgroundColor: colors.success + "20",
+              borderWidth: 2,
+              borderColor: colors.success + "40",
+            }}
+            onPress={() => navigation.navigate("Statistics")}
+          >
+            <View className="w-12 h-12 rounded-full bg-success/20 items-center justify-center mb-3">
+              <Text className="text-2xl">📊</Text>
+            </View>
+            <Text className="text-foreground font-bold text-center">
+              Thống kê
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
       {/* Stats Cards */}
