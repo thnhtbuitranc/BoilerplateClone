@@ -1,46 +1,96 @@
+// SleepTight App Colors - Dark Theme (Futuristic Glassmorphism)
 export const AppColors = {
-  primary: '#C9FF3D',
-  secondary: '#007BFF',
-  primaryForeground: '#0E0E0E',
+  // Primary colors - Purple/Blue gradient theme
+  primary: '#8B5CF6', // Vibrant purple
+  secondary: '#3B82F6', // Sky blue
+  accent: '#EC4899', // Pink accent
+  primaryForeground: '#FFFFFF',
   secondaryForeground: '#FFFFFF',
-  foreground: '#fafafa',
-  background: '#0a0b0a',
-  success: '#a4f4e7',
-  warning: '#f4c790',
-  error: '#e4626f',
-  border: '#4d4d4d',
-  neutrals100: '#949494',
-  neutrals200: '#858585',
-  neutrals300: '#7a7a7a',
-  neutrals400: '#6e6e6e',
-  neutrals500: '#5e5e5e',
-  neutrals600: '#4d4d4d',
-  neutrals700: '#414240',
-  neutrals800: '#1d1d1d',
-  neutrals900: '#1c1c1c',
-  neutrals1000: '#111111',
+
+  // Background & Surface
+  foreground: '#F9FAFB',
+  background: '#0F172A', // Deep navy blue
+  backgroundSecondary: '#1E293B', // Lighter navy
+  surface: '#1E293B',
+  surfaceGlass: 'rgba(30, 41, 59, 0.7)', // Glassmorphism effect
+
+  // Sleep-specific colors
+  sleepPrimary: '#8B5CF6', // Purple for sleep
+  sleepSecondary: '#6366F1', // Indigo
+  moonGlow: '#FCD34D', // Moon yellow
+  starLight: '#A78BFA', // Light purple
+  dreamBlue: '#60A5FA', // Dream blue
+
+  // Status colors
+  success: '#10B981', // Green
+  warning: '#F59E0B', // Amber
+  error: '#EF4444', // Red
+  info: '#3B82F6', // Blue
+
+  // Neutrals
+  border: '#334155',
+  neutrals100: '#F1F5F9',
+  neutrals200: '#E2E8F0',
+  neutrals300: '#CBD5E1',
+  neutrals400: '#94A3B8',
+  neutrals500: '#64748B',
+  neutrals600: '#475569',
+  neutrals700: '#334155',
+  neutrals800: '#1E293B',
+  neutrals900: '#0F172A',
+  neutrals1000: '#020617',
+
+  // Glassmorphism overlays
+  glassLight: 'rgba(255, 255, 255, 0.1)',
+  glassMedium: 'rgba(255, 255, 255, 0.05)',
+  glassDark: 'rgba(0, 0, 0, 0.2)',
 };
 
+// SleepTight App Colors - Light Theme (Soft & Professional)
 export const AppColorsLight: typeof AppColors = {
-  primary: '#C9FF3D',
-  secondary: '#2D9CDB',
-  primaryForeground: '#111111',
+  // Primary colors
+  primary: '#8B5CF6',
+  secondary: '#3B82F6',
+  accent: '#EC4899',
+  primaryForeground: '#FFFFFF',
   secondaryForeground: '#FFFFFF',
-  foreground: '#1a1a1a',
-  background: '#ffffff',
-  success: '#7fefe3',
-  warning: '#ffe5c1',
-  border: '#e8e8e8',
-  neutrals100: '#6c6c6c',
-  neutrals200: '#808080',
-  neutrals300: '#9e9e9e',
-  neutrals400: '#b4b4b4',
-  neutrals500: '#c1c1c1',
-  neutrals600: '#d3d3d3',
-  neutrals700: '#d9d9d9',
-  neutrals800: '#dddddd',
-  neutrals900: '#f2f2f2',
-  neutrals1000: '#f5f5f5',
-  error: '#e4626f',
+
+  // Background & Surface
+  foreground: '#1F2937',
+  background: '#F9FAFB', // Very light gray
+  backgroundSecondary: '#FFFFFF',
+  surface: '#FFFFFF',
+  surfaceGlass: 'rgba(255, 255, 255, 0.9)',
+
+  // Sleep-specific colors
+  sleepPrimary: '#8B5CF6',
+  sleepSecondary: '#6366F1',
+  moonGlow: '#FBBF24',
+  starLight: '#A78BFA',
+  dreamBlue: '#60A5FA',
+
+  // Status colors
+  success: '#10B981',
+  warning: '#F59E0B',
+  error: '#EF4444',
+  info: '#3B82F6',
+
+  // Neutrals
+  border: '#E5E7EB',
+  neutrals100: '#020617',
+  neutrals200: '#0F172A',
+  neutrals300: '#1E293B',
+  neutrals400: '#334155',
+  neutrals500: '#475569',
+  neutrals600: '#64748B',
+  neutrals700: '#94A3B8',
+  neutrals800: '#CBD5E1',
+  neutrals900: '#E2E8F0',
+  neutrals1000: '#F1F5F9',
+
+  // Glassmorphism overlays
+  glassLight: 'rgba(255, 255, 255, 0.8)',
+  glassMedium: 'rgba(255, 255, 255, 0.6)',
+  glassDark: 'rgba(0, 0, 0, 0.05)',
 };
 

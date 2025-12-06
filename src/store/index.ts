@@ -2,6 +2,8 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from 'redux-persist';
 import { MMKV } from 'react-native-mmkv';
 import appSlice from './slices/appSlice';
+import authSlice from './slices/authSlice';
+import sleepSlice from './slices/sleepSlice';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
 // Create MMKV storage instance
@@ -26,12 +28,14 @@ const reduxStorage = {
 // Combine reducers
 const rootReducer = combineReducers({
   app: appSlice,
+  auth: authSlice,
+  sleep: sleepSlice,
 });
 
 const persistedReducer = persistReducer({
   key: 'root',
   storage: reduxStorage,
-  whitelist: ['app'],
+  whitelist: ['app', 'auth', 'sleep'],
   stateReconciler: autoMergeLevel2 as any,
 }, rootReducer);
 
