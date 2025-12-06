@@ -9,11 +9,13 @@ import RegisterScreen from "@/screens/auth/RegisterScreen";
 import AboutScreen from "@/screens/AboutScreen";
 
 // SleepTight Screens
+import LandingScreen from "@/screens/LandingScreen";
 import DashboardScreen from "@/screens/sleep/DashboardScreen";
 import SleepTrackerScreen from "@/screens/sleep/SleepTrackerScreen";
 import SocialSleepScreen from "@/screens/sleep/SocialSleepScreen";
 import GroupDetailScreen from "@/screens/sleep/GroupDetailScreen";
 import IdolSelectionScreen from "@/screens/sleep/IdolSelectionScreen";
+import StatisticsScreen from "@/screens/sleep/StatisticsScreen";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -24,7 +26,10 @@ export default function RootStackNavigator() {
         headerShown: false,
       }}
     >
-      {/* Main Dashboard - Default Screen */}
+      {/* Landing Page - Default Screen */}
+      <Stack.Screen name="Landing" component={LandingScreen} />
+
+      {/* Main Dashboard */}
       <Stack.Screen name="Dashboard" component={DashboardScreen} />
 
       {/* Sleep Screens */}
@@ -32,6 +37,7 @@ export default function RootStackNavigator() {
       <Stack.Screen name="SocialSleep" component={SocialSleepScreen} />
       <Stack.Screen name="GroupDetail" component={GroupDetailScreen} />
       <Stack.Screen name="IdolSelection" component={IdolSelectionScreen} />
+      <Stack.Screen name="Statistics" component={StatisticsScreen} />
 
       {/* Auth Screens */}
       <Stack.Screen name="Login" component={LoginScreen} />

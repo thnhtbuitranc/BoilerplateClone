@@ -1,96 +1,96 @@
-// SleepTight App Colors - Dark Theme (Futuristic Glassmorphism)
+// SleepTight App Colors - Dark Theme (chucngungon.xyz style)
 export const AppColors = {
-  // Primary colors - Purple/Blue gradient theme
-  primary: '#8B5CF6', // Vibrant purple
-  secondary: '#3B82F6', // Sky blue
-  accent: '#EC4899', // Pink accent
+  // Primary colors - Sky Blue (from website)
+  primary: '#0ea5e9', // Sky-500
+  secondary: '#0284c7', // Sky-600
+  accent: '#38bdf8', // Sky-400
   primaryForeground: '#FFFFFF',
   secondaryForeground: '#FFFFFF',
 
-  // Background & Surface
-  foreground: '#F9FAFB',
-  background: '#0F172A', // Deep navy blue
-  backgroundSecondary: '#1E293B', // Lighter navy
-  surface: '#1E293B',
-  surfaceGlass: 'rgba(30, 41, 59, 0.7)', // Glassmorphism effect
+  // Background & Surface (Dark mode from website)
+  foreground: '#f3f4f6', // Gray-100 (Off-white)
+  background: '#111827', // Gray-900 (Softer dark)
+  backgroundSecondary: '#1f2937', // Gray-800 (Card bg)
+  surface: '#1f2937',
+  surfaceGlass: 'rgba(31, 41, 55, 0.8)', // Glassmorphism
 
   // Sleep-specific colors
-  sleepPrimary: '#8B5CF6', // Purple for sleep
-  sleepSecondary: '#6366F1', // Indigo
+  sleepPrimary: '#0ea5e9', // Sky blue
+  sleepSecondary: '#0284c7', // Darker sky
   moonGlow: '#FCD34D', // Moon yellow
-  starLight: '#A78BFA', // Light purple
-  dreamBlue: '#60A5FA', // Dream blue
-
-  // Status colors
-  success: '#10B981', // Green
-  warning: '#F59E0B', // Amber
-  error: '#EF4444', // Red
-  info: '#3B82F6', // Blue
-
-  // Neutrals
-  border: '#334155',
-  neutrals100: '#F1F5F9',
-  neutrals200: '#E2E8F0',
-  neutrals300: '#CBD5E1',
-  neutrals400: '#94A3B8',
-  neutrals500: '#64748B',
-  neutrals600: '#475569',
-  neutrals700: '#334155',
-  neutrals800: '#1E293B',
-  neutrals900: '#0F172A',
-  neutrals1000: '#020617',
-
-  // Glassmorphism overlays
-  glassLight: 'rgba(255, 255, 255, 0.1)',
-  glassMedium: 'rgba(255, 255, 255, 0.05)',
-  glassDark: 'rgba(0, 0, 0, 0.2)',
-};
-
-// SleepTight App Colors - Light Theme (Soft & Professional)
-export const AppColorsLight: typeof AppColors = {
-  // Primary colors
-  primary: '#8B5CF6',
-  secondary: '#3B82F6',
-  accent: '#EC4899',
-  primaryForeground: '#FFFFFF',
-  secondaryForeground: '#FFFFFF',
-
-  // Background & Surface
-  foreground: '#1F2937',
-  background: '#F9FAFB', // Very light gray
-  backgroundSecondary: '#FFFFFF',
-  surface: '#FFFFFF',
-  surfaceGlass: 'rgba(255, 255, 255, 0.9)',
-
-  // Sleep-specific colors
-  sleepPrimary: '#8B5CF6',
-  sleepSecondary: '#6366F1',
-  moonGlow: '#FBBF24',
-  starLight: '#A78BFA',
-  dreamBlue: '#60A5FA',
+  starLight: '#bae6fd', // Sky-200
+  dreamBlue: '#7dd3fc', // Sky-300
 
   // Status colors
   success: '#10B981',
   warning: '#F59E0B',
   error: '#EF4444',
-  info: '#3B82F6',
+  info: '#0ea5e9',
+
+  // Neutrals (from website)
+  border: '#374151',
+  neutrals100: '#f3f4f6',
+  neutrals200: '#e5e7eb',
+  neutrals300: '#d1d5db',
+  neutrals400: '#9ca3af', // Muted text
+  neutrals500: '#6b7280',
+  neutrals600: '#4b5563',
+  neutrals700: '#374151',
+  neutrals800: '#1f2937',
+  neutrals900: '#111827',
+  neutrals1000: '#030712',
+
+  // Glassmorphism overlays
+  glassLight: 'rgba(255, 255, 255, 0.1)',
+  glassMedium: 'rgba(255, 255, 255, 0.05)',
+  glassDark: 'rgba(0, 0, 0, 0.3)',
+};
+
+// SleepTight App Colors - Light Theme (chucngungon.xyz style)
+export const AppColorsLight: typeof AppColors = {
+  // Primary colors
+  primary: '#0ea5e9',
+  secondary: '#0284c7',
+  accent: '#38bdf8',
+  primaryForeground: '#FFFFFF',
+  secondaryForeground: '#FFFFFF',
+
+  // Background & Surface
+  foreground: '#111827',
+  background: '#f0f9ff', // Sky-50
+  backgroundSecondary: '#FFFFFF',
+  surface: '#FFFFFF',
+  surfaceGlass: 'rgba(255, 255, 255, 0.9)',
+
+  // Sleep-specific colors
+  sleepPrimary: '#0ea5e9',
+  sleepSecondary: '#0284c7',
+  moonGlow: '#FBBF24',
+  starLight: '#7dd3fc',
+  dreamBlue: '#38bdf8',
+
+  // Status colors
+  success: '#10B981',
+  warning: '#F59E0B',
+  error: '#EF4444',
+  info: '#0ea5e9',
 
   // Neutrals
-  border: '#E5E7EB',
-  neutrals100: '#020617',
-  neutrals200: '#0F172A',
-  neutrals300: '#1E293B',
-  neutrals400: '#334155',
-  neutrals500: '#475569',
-  neutrals600: '#64748B',
-  neutrals700: '#94A3B8',
-  neutrals800: '#CBD5E1',
-  neutrals900: '#E2E8F0',
-  neutrals1000: '#F1F5F9',
+  border: '#e5e7eb',
+  neutrals100: '#030712',
+  neutrals200: '#111827',
+  neutrals300: '#1f2937',
+  neutrals400: '#374151',
+  neutrals500: '#4b5563',
+  neutrals600: '#6b7280',
+  neutrals700: '#9ca3af',
+  neutrals800: '#d1d5db',
+  neutrals900: '#e5e7eb',
+  neutrals1000: '#f3f4f6',
 
   // Glassmorphism overlays
   glassLight: 'rgba(255, 255, 255, 0.8)',
   glassMedium: 'rgba(255, 255, 255, 0.6)',
-  glassDark: 'rgba(0, 0, 0, 0.05)',
+  glassDark: 'rgba(14, 165, 233, 0.05)',
 };
 
