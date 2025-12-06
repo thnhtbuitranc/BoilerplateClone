@@ -8,11 +8,22 @@ import {
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useColors } from "@/hooks/useColors";
-import { Moon, Sun, TrendingUp, Award, Users, Zap } from "lucide-react-native";
+import {
+  Moon,
+  Sun,
+  TrendingUp,
+  Award,
+  Users,
+  Zap,
+  Sparkles,
+  Heart,
+} from "lucide-react-native";
 import { SleepStats } from "@/types/sleep";
 import { SleepService } from "@/services/sleep.service";
 import { GroupService } from "@/services/group.service";
 import { useAppSelector } from "@/store/hooks";
+import RealtimeSleepCounter from "@/components/sleep/RealtimeSleepCounter";
+import SleepTimeSlots from "@/components/sleep/SleepTimeSlots";
 
 const DashboardScreen = ({ navigation }: any) => {
   const { t } = useTranslation();
@@ -62,46 +73,61 @@ const DashboardScreen = ({ navigation }: any) => {
         </Text>
       </View>
 
-      {/* Social Sleep Counter */}
-      <View className="mx-6 mb-6 p-6 rounded-3xl bg-surfaceGlass border border-border">
-        <View className="flex-row items-center justify-between">
-          <View className="flex-1">
-            <Text className="text-sm text-neutrals400 mb-1">
-              {t("SOCIAL_SLEEP_TITLE")}
-            </Text>
-            <Text className="text-2xl font-bold text-primary">
-              {sleepingCount.toLocaleString()}
-            </Text>
-            <Text className="text-xs text-neutrals500 mt-1">
-              {t("PEOPLE_SLEEPING_NOW", { count: sleepingCount })}
-            </Text>
-          </View>
-          <View className="w-16 h-16 rounded-full bg-primary/20 items-center justify-center">
-            <Moon size={32} color={colors.primary} />
-          </View>
-        </View>
+      {/* Real-time Sleep Counter - NEW */}
+      <View className="mx-6 mb-6">
+        <RealtimeSleepCounter />
       </View>
 
-      {/* Quick Actions */}
+      {/* Sleep Time Slots - NEW */}
       <View className="mx-6 mb-6">
+        <SleepTimeSlots
+          onSelectSlot={(time) => console.log("Selected:", time)}
+        />
+      </View>
+
+      {/* Quick Actions - Cute Style */}
+      <View className="mx-6 mb-6">
+        <Text className="text-xl font-bold text-foreground mb-4">
+          ⚡ Hành động nhanh
+        </Text>
         <View className="flex-row gap-3">
           <TouchableOpacity
-            className="flex-1 p-4 rounded-2xl bg-sleepPrimary items-center"
+            className="flex-1 p-6 rounded-3xl items-center"
+            style={{
+              backgroundColor: colors.sleepPrimary,
+              shadowColor: colors.sleepPrimary,
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 0.3,
+              shadowRadius: 8,
+              elevation: 5,
+            }}
             onPress={() => navigation.navigate("SleepTracker")}
           >
-            <Moon size={24} color="#FFFFFF" />
-            <Text className="text-white font-semibold mt-2 text-center">
-              {t("SLEEP_NOW")}
+            <View className="w-12 h-12 rounded-full bg-white/20 items-center justify-center mb-3">
+              <Moon size={24} color="#FFFFFF" />
+            </View>
+            <Text className="text-white font-bold text-center">
+              🌙 Bắt đầu ngủ
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            className="flex-1 p-4 rounded-2xl bg-secondary items-center"
+            className="flex-1 p-6 rounded-3xl items-center"
+            style={{
+              backgroundColor: colors.secondary,
+              shadowColor: colors.secondary,
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 0.3,
+              shadowRadius: 8,
+              elevation: 5,
+            }}
             onPress={() => navigation.navigate("SocialSleep")}
           >
-            <Users size={24} color="#FFFFFF" />
-            <Text className="text-white font-semibold mt-2 text-center">
-              {t("SOCIAL_SLEEP")}
+            <View className="w-12 h-12 rounded-full bg-white/20 items-center justify-center mb-3">
+              <Users size={24} color="#FFFFFF" />
+            </View>
+            <Text className="text-white font-bold text-center">
+              👥 Nhóm ngủ
             </Text>
           </TouchableOpacity>
         </View>

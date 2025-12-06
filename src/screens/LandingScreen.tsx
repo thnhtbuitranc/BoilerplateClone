@@ -1,13 +1,44 @@
-import React from "react";
-import { View, Text, ScrollView, TouchableOpacity, Image } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  Animated,
+} from "react-native";
 import { useTranslation } from "react-i18next";
 import { useColors } from "@/hooks/useColors";
-import { Moon, Users, Bell, TrendingUp, Star, Zap } from "lucide-react-native";
-// import { LinearGradient } from 'expo-linear-gradient'; // Optional
+import {
+  Moon,
+  Users,
+  Bell,
+  TrendingUp,
+  Star,
+  Zap,
+  Heart,
+  Sparkles,
+} from "lucide-react-native";
 
 const LandingScreen = ({ navigation }: any) => {
   const { t } = useTranslation();
   const colors = useColors();
+  const [fadeAnim] = useState(new Animated.Value(0));
+  const [slideAnim] = useState(new Animated.Value(50));
+
+  useEffect(() => {
+    Animated.parallel([
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 800,
+        useNativeDriver: true,
+      }),
+      Animated.timing(slideAnim, {
+        toValue: 0,
+        duration: 600,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, []);
 
   const features = [
     {
@@ -36,37 +67,87 @@ const LandingScreen = ({ navigation }: any) => {
   return (
     <ScrollView className="flex-1 bg-background">
       {/* Hero Section */}
-      <View className="px-6 pt-20 pb-12">
-        {/* Logo/Title */}
+      <Animated.View
+        className="px-6 pt-20 pb-12"
+        style={{
+          opacity: fadeAnim,
+          transform: [{ translateY: slideAnim }],
+        }}
+      >
+        {/* Logo/Title with cute animation */}
         <View className="items-center mb-8">
-          <View className="w-24 h-24 rounded-full bg-primary/20 items-center justify-center mb-4">
-            <Moon size={48} color={colors.primary} />
+          <View className="relative">
+            {/* Cute moon with glow effect */}
+            <View className="w-32 h-32 rounded-full items-center justify-center mb-4"
+              style={{
+                backgroundColor: `${colors.primary}15`,
+                shadowColor: colors.primary,
+                shadowOffset: { width: 0, height: 8 },
+                shadowOpacity: 0.3,
+                shadowRadius: 20,
+                elevation: 10,
+              }}
+            >
+              <Moon size={56} color={colors.primary} strokeWidth={2} />
+              {/* Sparkles */}
+              <View className="absolute -top-2 -right-2">
+                <Sparkles size={20} color={colors.warning} fill={colors.warning} />
+              </View>
+              <View className="absolute -bottom-1 -left-1">
+                <Heart size={16} color={colors.error} fill={colors.error} />
+              </View>
+            </View>
           </View>
-          <Text className="text-4xl font-bold text-foreground text-center mb-3">
-            {t("APP_NAME")}
+
+          <Text className="text-5xl font-bold text-foreground text-center mb-3">
+            😴 SleepTight
           </Text>
-          <Text className="text-lg text-neutrals400 text-center">
-            {t("LANDING_HERO_SUBTITLE")}
+          <Text className="text-xl text-neutrals400 text-center px-4">
+            Cùng nhau ngủ sớm, sống khỏe mỗi ngày! 🌙✨
           </Text>
         </View>
 
-        {/* CTA Buttons */}
-        <View className="gap-3 mb-12">
+        {/* CTA Buttons - Cute & Rounded */}
+        <View className="gap-4 mb-12">
           <TouchableOpacity
-            className="p-4 rounded-2xl bg-primary items-center"
+            className="p-5 rounded-3xl items-center flex-row justify-center"
+            style={{
+              backgroundColor: colors.primary,
+              shadowColor: colors.primary,
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 0.3,
+              shadowRadius: 8,
+              elevation: 5,
+            }}
             onPress={() => navigation.navigate("Register")}
           >
+            <Sparkles size={20} color="#FFFFFF" style={{ marginRight: 8 }} />
             <Text className="text-white text-lg font-bold">
-              {t("GET_STARTED")}
+              🚀 Bắt đầu ngay!
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            className="p-4 rounded-2xl border-2 items-center"
-            style={{ borderColor: colors.primary }}
+            className="p-5 rounded-3xl items-center flex-row justify-center"
+            style={{
+              borderColor: colors.primary,
+              borderWidth: 2,
+              backgroundColor: `${colors.primary}10`,
+            }}
             onPress={() => navigation.navigate("Login")}
           >
-            <Text className="text-primary text-lg font-bold">{t("LOGIN")}</Text>
+            <Moon size={18} color={colors.primary} style={{ marginRight: 8 }} />
+            <Text className="text-primary text-lg font-bold">Đăng nhập</Text>
+          </TouchableOpacity>
+
+          {/* Skip Login - For Demo */}
+          <TouchableOpacity
+            className="p-3 items-center"
+            onPress={() => navigation.navigate("Dashboard" as never)}
+          >
+            <Text className="text-neutrals400 text-base">
+              Xem thử trước →
+            </Text>
           </TouchableOpacity>
         </View>
 

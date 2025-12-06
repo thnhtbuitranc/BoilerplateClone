@@ -1,41 +1,44 @@
-import React, {useState} from 'react';
-import {View, Text, Pressable, Alert} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {z} from 'zod';
-import AuthContainer from '@/components/auth/AuthContainer';
-import AppInput from '@/components/ui/AppInput';
-import AppButton from '@/components/ui/AppButton';
-import Icon from '@/components/ui/Icon';
-import Checkbox from '@/components/ui/Checkbox';
-import {RootStackScreenProps} from '@/navigation/types';
+import React, { useState } from "react";
+import { View, Text, Pressable, Alert } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { z } from "zod";
+import AuthContainer from "@/components/auth/AuthContainer";
+import AppInput from "@/components/ui/AppInput";
+import AppButton from "@/components/ui/AppButton";
+import Icon from "@/components/ui/Icon";
+import Checkbox from "@/components/ui/Checkbox";
+import { RootStackScreenProps } from "@/navigation/types";
 
 const registerSchema = z
   .object({
-    fullName: z.string().min(2, 'Full name must be at least 2 characters'),
-    email: z.string().email('Please enter a valid email address'),
-    password: z.string().min(6, 'Password must be at least 6 characters'),
+    fullName: z.string().min(2, "Full name must be at least 2 characters"),
+    email: z.string().email("Please enter a valid email address"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
     confirmPassword: z.string(),
-    agreeToTerms: z.boolean().refine(val => val, {
-      message: 'You must agree to the terms and conditions',
+    agreeToTerms: z.boolean().refine((val) => val, {
+      message: "You must agree to the terms and conditions",
     }),
   })
-  .refine(data => data.password === data.confirmPassword, {
-    message: 'Passwords do not match',
-    path: ['confirmPassword'],
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
   });
 
 type RegisterFormData = z.infer<typeof registerSchema>;
 
 export default function RegisterScreen() {
-  const navigation = useNavigation<RootStackScreenProps<'Register'>['navigation']>();
+  const navigation =
+    useNavigation<RootStackScreenProps<"Register">["navigation"]>();
   const [formData, setFormData] = useState<RegisterFormData>({
-    fullName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+    fullName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
     agreeToTerms: false,
   });
-  const [errors, setErrors] = useState<Partial<Record<keyof RegisterFormData, string>>>({});
+  const [errors, setErrors] = useState<
+    Partial<Record<keyof RegisterFormData, string>>
+  >({});
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -48,7 +51,7 @@ export default function RegisterScreen() {
     } catch (error) {
       if (error instanceof z.ZodError) {
         const newErrors: Partial<Record<keyof RegisterFormData, string>> = {};
-        error.errors.forEach(err => {
+        error.errors.forEach((err) => {
           if (err.path[0]) {
             newErrors[err.path[0] as keyof RegisterFormData] = err.message;
           }
@@ -64,21 +67,25 @@ export default function RegisterScreen() {
 
     setIsLoading(true);
     try {
-      await new Promise(resolve => setTimeout(() => resolve(null), 2000));
-      Alert.alert('Success', 'Account created successfully!', [
-        {text: 'OK', onPress: () => navigation.navigate('Login')},
-      ]);
+      // Simulate registration - In production, use Supabase auth
+      await new Promise((resolve) => setTimeout(() => resolve(null), 1000));
+
+      // Navigate to Dashboard directly after registration
+      navigation.navigate("Dashboard" as never);
     } catch (error) {
-      Alert.alert('Error', 'Registration failed. Please try again.');
+      Alert.alert("Error", "Registration failed. Please try again.");
     } finally {
       setIsLoading(false);
     }
   };
 
-  const updateFormData = (field: keyof RegisterFormData, value: string | boolean) => {
-    setFormData(prev => ({...prev, [field]: value}));
+  const updateFormData = (
+    field: keyof RegisterFormData,
+    value: string | boolean
+  ) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
     if (errors[field]) {
-      setErrors(prev => ({...prev, [field]: undefined}));
+      setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
   };
 
@@ -99,7 +106,7 @@ export default function RegisterScreen() {
             label="Full Name"
             placeholder="Enter your full name"
             value={formData.fullName}
-            onChangeText={value => updateFormData('fullName', value)}
+            onChangeText={(value) => updateFormData("fullName", value)}
             errorText={errors.fullName}
             autoComplete="name"
             leftIcon={<Icon name="User" className="w-5 h-5 text-neutrals100" />}
@@ -109,7 +116,7 @@ export default function RegisterScreen() {
             label="Email"
             placeholder="Enter your email"
             value={formData.email}
-            onChangeText={value => updateFormData('email', value)}
+            onChangeText={(value) => updateFormData("email", value)}
             errorText={errors.email}
             keyboardType="email-address"
             autoCapitalize="none"
@@ -121,7 +128,7 @@ export default function RegisterScreen() {
             label="Password"
             placeholder="Enter your password"
             value={formData.password}
-            onChangeText={value => updateFormData('password', value)}
+            onChangeText={(value) => updateFormData("password", value)}
             errorText={errors.password}
             secureTextEntry={!showPassword}
             autoComplete="new-password"
@@ -129,7 +136,7 @@ export default function RegisterScreen() {
             rightIcon={
               <Pressable onPress={() => setShowPassword(!showPassword)}>
                 <Icon
-                  name={showPassword ? 'EyeOff' : 'Eye'}
+                  name={showPassword ? "EyeOff" : "Eye"}
                   className="w-5 h-5 text-neutrals100"
                 />
               </Pressable>
@@ -140,15 +147,17 @@ export default function RegisterScreen() {
             label="Confirm Password"
             placeholder="Confirm your password"
             value={formData.confirmPassword}
-            onChangeText={value => updateFormData('confirmPassword', value)}
+            onChangeText={(value) => updateFormData("confirmPassword", value)}
             errorText={errors.confirmPassword}
             secureTextEntry={!showConfirmPassword}
             autoComplete="new-password"
             leftIcon={<Icon name="Lock" className="w-5 h-5 text-neutrals100" />}
             rightIcon={
-              <Pressable onPress={() => setShowConfirmPassword(!showConfirmPassword)}>
+              <Pressable
+                onPress={() => setShowConfirmPassword(!showConfirmPassword)}
+              >
                 <Icon
-                  name={showConfirmPassword ? 'EyeOff' : 'Eye'}
+                  name={showConfirmPassword ? "EyeOff" : "Eye"}
                   className="w-5 h-5 text-neutrals100"
                 />
               </Pressable>
@@ -159,13 +168,17 @@ export default function RegisterScreen() {
         <View className="mb-6">
           <Checkbox
             checked={formData.agreeToTerms}
-            onValueChange={(checked) => updateFormData('agreeToTerms', checked)}
+            onValueChange={(checked) => updateFormData("agreeToTerms", checked)}
             label={
               <Text className="text-neutrals100 font-sans-regular ml-2">
-                I agree to the{' '}
-                <Text className="text-primary font-sans-medium">Terms of Service</Text>
-                {' '}and{' '}
-                <Text className="text-primary font-sans-medium">Privacy Policy</Text>
+                I agree to the{" "}
+                <Text className="text-primary font-sans-medium">
+                  Terms of Service
+                </Text>{" "}
+                and{" "}
+                <Text className="text-primary font-sans-medium">
+                  Privacy Policy
+                </Text>
               </Text>
             }
           />
@@ -180,15 +193,16 @@ export default function RegisterScreen() {
           variant="primary"
           onPress={handleRegister}
           disabled={isLoading}
-          className="mb-6">
-          {isLoading ? 'Creating Account...' : 'Create Account'}
+          className="mb-6"
+        >
+          {isLoading ? "Creating Account..." : "Create Account"}
         </AppButton>
 
         <View className="flex-row justify-center items-center">
           <Text className="text-neutrals100 font-sans-regular">
-            Already have an account?{' '}
+            Already have an account?{" "}
           </Text>
-          <Pressable onPress={() => navigation.navigate('Login')}>
+          <Pressable onPress={() => navigation.navigate("Login")}>
             <Text className="text-primary font-sans-medium">Sign In</Text>
           </Pressable>
         </View>

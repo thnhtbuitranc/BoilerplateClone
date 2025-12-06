@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
-import {Alert, Pressable, Text, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {z} from 'zod';
-import AuthContainer from '@/components/auth/AuthContainer';
-import AppInput from '@/components/ui/AppInput';
-import AppButton from '@/components/ui/AppButton';
-import Icon from '@/components/ui/Icon';
+import React, { useState } from "react";
+import { Alert, Pressable, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { z } from "zod";
+import AuthContainer from "@/components/auth/AuthContainer";
+import AppInput from "@/components/ui/AppInput";
+import AppButton from "@/components/ui/AppButton";
+import Icon from "@/components/ui/Icon";
 
 const loginSchema = z.object({
-  email: z.string().email('Please enter a valid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
+  email: z.string().email("Please enter a valid email address"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
 type LoginFormData = z.infer<typeof loginSchema>;
@@ -17,8 +17,8 @@ type LoginFormData = z.infer<typeof loginSchema>;
 export default function LoginScreen() {
   const navigation = useNavigation();
   const [formData, setFormData] = useState<LoginFormData>({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
   const [errors, setErrors] = useState<Partial<LoginFormData>>({});
   const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +32,7 @@ export default function LoginScreen() {
     } catch (error) {
       if (error instanceof z.ZodError) {
         const newErrors: Partial<LoginFormData> = {};
-        error.errors.forEach(err => {
+        error.errors.forEach((err) => {
           if (err.path[0]) {
             newErrors[err.path[0] as keyof LoginFormData] = err.message;
           }
@@ -48,21 +48,22 @@ export default function LoginScreen() {
 
     setIsLoading(true);
     try {
-      await new Promise(resolve => setTimeout(() => resolve(null), 2000));
-      Alert.alert('Success', 'Login successful!', [
-        {text: 'OK', onPress: () => navigation.navigate('Main')},
-      ]);
+      // Simulate login - In production, use Supabase auth
+      await new Promise((resolve) => setTimeout(() => resolve(null), 1000));
+
+      // Navigate to Dashboard directly
+      navigation.navigate("Dashboard" as never);
     } catch (error) {
-      Alert.alert('Error', 'Login failed. Please try again.');
+      Alert.alert("Error", "Login failed. Please try again.");
     } finally {
       setIsLoading(false);
     }
   };
 
   const updateFormData = (field: keyof LoginFormData, value: string) => {
-    setFormData(prev => ({...prev, [field]: value}));
+    setFormData((prev) => ({ ...prev, [field]: value }));
     if (errors[field]) {
-      setErrors(prev => ({...prev, [field]: undefined}));
+      setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
   };
 
@@ -83,27 +84,27 @@ export default function LoginScreen() {
             label="Email"
             placeholder="Enter your email"
             value={formData.email}
-            onChangeText={value => updateFormData('email', value)}
+            onChangeText={(value) => updateFormData("email", value)}
             errorText={errors.email}
             keyboardType="email-address"
             autoCapitalize="none"
             autoComplete="email"
-            leftIcon={<Icon name="Mail" className="w-5 h-5 text-neutrals100"/>}
+            leftIcon={<Icon name="Mail" className="w-5 h-5 text-neutrals100" />}
           />
 
           <AppInput
             label="Password"
             placeholder="Enter your password"
             value={formData.password}
-            onChangeText={value => updateFormData('password', value)}
+            onChangeText={(value) => updateFormData("password", value)}
             errorText={errors.password}
             secureTextEntry={!showPassword}
             autoComplete="password"
-            leftIcon={<Icon name="Lock" className="w-5 h-5 text-neutrals100"/>}
+            leftIcon={<Icon name="Lock" className="w-5 h-5 text-neutrals100" />}
             rightIcon={
               <Pressable onPress={() => setShowPassword(!showPassword)}>
                 <Icon
-                  name={showPassword ? 'EyeOff' : 'Eye'}
+                  name={showPassword ? "EyeOff" : "Eye"}
                   className="w-5 h-5 text-neutrals100"
                 />
               </Pressable>
@@ -121,15 +122,16 @@ export default function LoginScreen() {
           variant="primary"
           onPress={handleLogin}
           disabled={isLoading}
-          className="mb-6">
-          {isLoading ? 'Signing In...' : 'Sign In'}
+          className="mb-6"
+        >
+          {isLoading ? "Signing In..." : "Sign In"}
         </AppButton>
 
         <View className="flex-row justify-center items-center">
           <Text className="text-neutrals100 font-sans-regular">
-            Don't have an account?{' '}
+            Don't have an account?{" "}
           </Text>
-          <Pressable onPress={() => navigation.navigate('Register')}>
+          <Pressable onPress={() => navigation.navigate("Register")}>
             <Text className="text-primary font-sans-medium">Sign Up</Text>
           </Pressable>
         </View>
